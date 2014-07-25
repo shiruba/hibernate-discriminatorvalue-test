@@ -1,0 +1,1 @@
+Test case for the behavior described here: https://hibernate.atlassian.net/browse/HHH-9302
