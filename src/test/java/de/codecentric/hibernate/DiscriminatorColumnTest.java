@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 public class DiscriminatorColumnTest {
 
 	@Test
-	public void testDiscriminatorColumnInInheritance() {
+	public void testDiscriminatorColumnInInheritanceWithMerge() {
 		EntityManager entityManager = getEntityManager();
 		entityManager.getTransaction().begin();
 
@@ -21,6 +21,31 @@ public class DiscriminatorColumnTest {
 		entityManager.merge(parent);
 		entityManager.merge(specialParent);
 		entityManager.merge(verySpecialParent);
+
+		entityManager.getTransaction().commit();
+
+		Parent actualParent = entityManager.find(Parent.class, 1);
+		assertNotNull(actualParent);
+
+		SpecialParent actualSpecialParent = entityManager.find(SpecialParent.class, 2);
+		assertNotNull(actualSpecialParent);
+
+		VerySpecialParent actualVerySpecialParent = entityManager.find(VerySpecialParent.class, 3);
+		assertNotNull(actualVerySpecialParent);
+	}
+
+	@Test
+	public void testDiscriminatorColumnInInheritanceWithPersist() {
+		EntityManager entityManager = getEntityManager();
+		entityManager.getTransaction().begin();
+
+		Parent parent = new Parent(1, "Parent");
+		SpecialParent specialParent = new SpecialParent(2, "SpecialParent");
+		VerySpecialParent verySpecialParent = new VerySpecialParent(3, "VerySpecialParent");
+
+		entityManager.persist(parent);
+		entityManager.persist(specialParent);
+		entityManager.persist(verySpecialParent);
 
 		entityManager.getTransaction().commit();
 
