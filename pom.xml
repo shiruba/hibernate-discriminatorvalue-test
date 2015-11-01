@@ -55,7 +55,7 @@
 	<properties>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<hibernate.version>4.3.6.Final</hibernate.version>
+		<hibernate.version>5.0.3.Final</hibernate.version>
 		<h2.version>1.4.180</h2.version>
 		<mysql.version>5.1.31</mysql.version>
 		<junit.version>4.11</junit.version>
